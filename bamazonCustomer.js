@@ -74,11 +74,13 @@ var buy = function(){
         } else if(res[0].stock_quantity >= productPurchased[0].Quantity){
 
           console.log('');
+          console.log('------------------------');
           console.log(productPurchased[0].Quantity + ' items purchased');
           console.log(res[0].product_name + ' $' + res[0].price);
           
           var saleTotal = res[0].price * productPurchased[0].Quantity;
-          console.log('Total: $' + saleTotal);
+          var decSaleTotal = saleTotal.toFixed(2);
+          console.log('Total: $' + decSaleTotal);
           
           newQuantity = res[0].stock_quantity - productPurchased[0].Quantity;
           
