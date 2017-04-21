@@ -2,16 +2,11 @@ var mysql = require("mysql");
 var inquirer = require("inquirer");
 var prompt = require('prompt');
 var Table = require('cli-table');
+var config=require('./keys');
 var setTimer;
 var productPurchased = [];
 
-var connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-  user: 'root',
-  password: '@Micky123456',
-  database: "bamazon_db"
-});
+var connection = mysql.createConnection(config);
 
 
 connection.connect(function(err) {
