@@ -15,7 +15,7 @@ connection.connect(function(err) {
 });
 
 
-
+// function that lists all items in a table
 function listAll(){
   connection.query("SELECT * FROM products", function(err, res) {
   if (err) throw err;
@@ -33,7 +33,7 @@ function listAll(){
   buy();
 }); 
 
-
+// function that prompts users and process purchase
 var buy = function(){
 //creates the questions that will be prompted to the user
   var productInfo = {
@@ -60,12 +60,14 @@ var buy = function(){
     connection.query('SELECT * FROM products WHERE id=?', productPurchased[0].itemID, function(err, res){
         if(err) console.log(err, 'That item ID doesn\'t exist');
         
-//if the stock quantity available is less than the amount that the user wanted to purchase then the user will be alerted that the product is out of stock
+//if the stock quantity available is less than the amount that the user wanted to purchase 
+//then the user will be alerted that the product is out of stock
         if(res[0].stock_quantity < productPurchased[0].Quantity){
           console.log('That product is out of stock!');
           connection.end();
 
-//otherwise if the stock amount available is more than or equal to the amount being asked for then the purchase is continued and the user is alerted of what items are being purchased, how much one item is and what the total amount is
+//otherwise if the stock amount available is more than or equal to the amount being asked for 
+//then the purchase is continued and the user is alerted of what items are being purchased, how much one item is and what the total amount is
         } else if(res[0].stock_quantity >= productPurchased[0].Quantity){
 
           console.log('');
